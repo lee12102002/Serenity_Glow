@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Products</title>
+    <!-- Include any necessary CSS files here -->
+</head>
+<body>
+    <h1>Read Products</h1>
+    <button id="read-all-btn">Read All Products</button>
+    <button id="read-by-category-btn">Read Products by Category</button>
+    <button id="read-by-item-btn">Read Product by Item ID</button>
+    <div id="products-container"></div>
+    <!-- Include any necessary JavaScript files here -->
+    <script type="module" src="inventory.js"></script>
+    <script type="module">
+        import { fetchAllProducts, fetchProductsByCategory, fetchProductById } from './inventory.js';
+
+        // Function to display products
+        const displayProducts = (products) => {
+            const container = document.getElementById('products-container');
+            container.innerHTML = ''; // Clear previous content
+
+            if (products.length === 0) {
+                container.textContent = 'No products found.';
+            } else {
+                products.forEach(product => {
+                    const productDiv = document.createElement('div');
+                    productDiv.innerHTML = `
+                        <h3>${product.title}</h3>
+                        <p>Description: ${product.description}</p>
+                        <p>Price: $${product.price}</p>
+                        <p>Quantity: ${product.quantity}</p>
+                        <p>Category ID: ${product.categoryId}</p>
+                        <hr>
+                    `;
+                    container.appendChild(productDiv);
+                });
+            }
+        };
+
+        // Event listeners for button clicks
+        document.getElementById('read-all-btn').addEventListener('click', async () => {
+            const products = await fetchAllProducts();
+            displayProducts(products);
+        });
+
+        document.getElementById('read-by-category-btn').addEventListener('click', async () => {
+            const category = prompt('Enter category ID:');
+            if (category !== null) {
+                const products = await fetchProductsByCategory(category);
+                displayProducts(products);
+            }
+        });
+
+        document.getElementById('read-by-item-btn').addEventListener('click', async () => {
+            const itemId = prompt('Enter item ID:');
+            if (itemId !== null) {
+                const product = await fetchProductById(itemId);
+                if (product !== null) {
+                    displayProducts([product]);
+                } else {
+                    alert('Product not found.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

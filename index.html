@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Register</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet--> 
+    <link href="styles.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <div id="login-container">
+        <form id="loginform">
+            <h3>Login</h3>
+            <label for="login-email">Username
+                <input type="email" placeholder="Email or Phone" id="login-email">
+            </label>
+
+            <label for="login-password">Password
+                <input type="password" placeholder="Password" id="login-password">
+            </label>
+
+            <button type="submit">Log in</button>
+            <div class="social">
+                <div class="go">
+                    <i class="fab fa-google"></i>Google
+                </div>
+
+                <div class="fb">
+                    <i class="fab fa-facebook"></i>Facebook
+                </div>
+            </div>
+            <p>Don't have an account? <a href="#" id="show-signup">Sign up here</a></p>
+        </form>
+    </div>
+
+    <div id="signup-container" style="display: none;">
+        <form id="signupform">
+            <h3>Sign Up</h3>
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" placeholder="Enter your email">
+        
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" placeholder="Enter your password">
+        
+            <label for="signup-name">Full Name</label>
+            <input type="text" id="signup-name" placeholder="Enter your full name">
+        
+            <label for="signup-mobile">Contact</label>
+            <input type="text" id="signup-mobile" placeholder="Enter your contact number">
+        
+            <button type="submit">Sign Up</button>
+            <p>Already have an account? <a href="#" id="show-login">Login here</a></p>
+        </form>
+    </div>
+
+    <script type="module" src="login.js"></script>
+</body>
+</html>
+

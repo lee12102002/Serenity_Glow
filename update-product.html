@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <!-- Include any necessary CSS files here -->
+</head>
+<body>
+    <h1>Update Product</h1>
+    <button id="update-description-btn">Update Description</button>
+    <button id="update-price-btn">Update Price</button>
+    <button id="update-quantity-btn">Update Quantity</button>
+    <button id="update-title-btn">Update Title</button>
+    <button id="update-category-id-btn">Update Category ID</button>
+    <button id="add-credit-limit-btn">Add Credit Limit to User</button>
+
+    <!-- Include Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+    apiKey: "AIzaSyArGlLkhajZLrcDh0TeG3iL5GZdl8ZjWhM",
+    authDomain: "newlogin-5ed37.firebaseapp.com",
+    projectId: "newlogin-5ed37",
+    storageBucket: "newlogin-5ed37.appspot.com",
+    messagingSenderId: "1033268006588",
+    appId: "1:1033268006588:web:07bea3dba558ba5b450ab9",
+    measurementId: "G-HMDJLJBFJE"
+};
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+    </script>
+
+    <!-- Include any necessary JavaScript files here -->
+    <script type="module" src="update-product.js"></script>
+
+    <script type="module">
+        import { updateProductDescription, updateProductPriceByProductId, updateProductQuantity, updateProductTitle, updateProductCategoryId,addCreditLimitToUser }from './update-product.js';
+        // Function to handle updating description
+        const updateDescription = async () => {
+            const productId = prompt("Enter Product ID:");
+            const newDescription = prompt("Enter New Description:");
+            // Call a function to update description using productId and newDescription
+            await updateProductDescription(productId, newDescription);
+        };
+
+        // Function to handle updating price
+        const updatePrice = async () => {
+            const productId = prompt("Enter Product ID:");
+            const newPrice = prompt("Enter New Price:");
+            // Call a function to update price using productId and newPrice
+            await updateProductPriceByProductId(productId, newPrice);
+        };
+
+        // Function to handle updating quantity
+        const updateQuantity = async () => {
+            const productId = prompt("Enter Product ID:");
+            const newQuantity = prompt("Enter New Quantity:");
+            // Call a function to update quantity using productId and newQuantity
+            await updateProductQuantity(productId, newQuantity);
+        };
+
+        // Function to handle updating title
+        const updateTitle = async () => {
+            const productId = prompt("Enter Product ID:");
+            const newTitle = prompt("Enter New Title:");
+            // Call a function to update title using productId and newTitle
+            await updateProductTitle(productId, newTitle);
+        };
+
+        // Function to handle updating category ID
+        const updateCategoryId = async () => {
+            const productId = prompt("Enter Product ID:");
+            const newCategoryId = prompt("Enter New Category ID:");
+            // Call a function to update category ID using productId and newCategoryId
+            await updateProductCategoryId(productId, newCategoryId);
+        };
+
+        document.getElementById('update-description-btn').addEventListener('click', updateDescription);
+        document.getElementById('update-price-btn').addEventListener('click', updatePrice);
+        document.getElementById('update-quantity-btn').addEventListener('click', updateQuantity);
+        document.getElementById('update-title-btn').addEventListener('click', updateTitle);
+        document.getElementById('update-category-id-btn').addEventListener('click', updateCategoryId);
+        document.getElementById('add-credit-limit-btn').addEventListener('click', addCreditLimitToUser);
+    </script>
+</body>
+</html>

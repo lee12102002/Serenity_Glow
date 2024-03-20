@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product</title>
+</head>
+<body>
+    <h1>Add New Product</h1>
+    <form id="new-product-form">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description"></textarea><br>
+        <label for="price">Price:</label><br>
+        <input type="number" id="price" name="price"><br>
+        <label for="quantity">Quantity:</label><br>
+        <input type="number" id="quantity" name="quantity"><br>
+        <label for="categoryId">Category ID:</label><br>
+        <input type="text" id="categoryId" name="categoryId"><br>
+        <label for="categoryId">Item ID:</label><br>
+        <input type="text" id="itemId" name="itemId"><br>
+        <label for="categoryId">Unit Of Measurement:</label><br>
+        <input type="text" id="uom" name="uom"><br>
+        <button type="submit">Add Product</button>
+    </form>
+
+    <!-- Include Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { addNewProduct } from './update-product.js';
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+    apiKey: "AIzaSyArGlLkhajZLrcDh0TeG3iL5GZdl8ZjWhM",
+    authDomain: "newlogin-5ed37.firebaseapp.com",
+    projectId: "newlogin-5ed37",
+    storageBucket: "newlogin-5ed37.appspot.com",
+    messagingSenderId: "1033268006588",
+    appId: "1:1033268006588:web:07bea3dba558ba5b450ab9",
+    measurementId: "G-HMDJLJBFJE"
+};
+
+        // Initialize Firebase app
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Function to handle form submission
+        const handleFormSubmit = async (event) => {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const product = Object.fromEntries(formData.entries());
+            const success = await addNewProduct(product);
+            if (success) {
+                alert("Product added successfully!");
+                form.reset();
+            } else {
+                alert("Failed to add product!");
+            }
+        };
+
+        document.getElementById('new-product-form').addEventListener('submit', handleFormSubmit);
+    </script>
+</body>
+</html>
